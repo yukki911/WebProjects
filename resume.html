@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — James Andrew R. Yapit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-navy: #1e3a5f;
+      --accent-blue: #2b5c8f;
+      --teal-blue: #3d7ea6;
+      --text-dark: #222b45;
+      --text-muted: #556987;
+      --bg-page: #0b0f19;
+      --bg-sheet: #ffffff;
+      --dot-active: #3d7ea6;
+      --dot-inactive: #222b45;
+      --timeline-line: #cbd5e1;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 60px;
+    }
+
+    /* Top Action Bar */
+    .top-action-bar {
+      width: 100%;
+      max-width: 850px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #e5b887;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      color: #f7e4d0;
+      transform: translateX(-3px);
+    }
+
+    .action-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .action-btn {
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-print {
+      background: #e5b887;
+      color: #07090e;
+      box-shadow: 0 2px 10px rgba(229, 184, 135, 0.3);
+    }
+
+    .btn-print:hover {
+      background: #f7e4d0;
+      transform: translateY(-1px);
+    }
+
+    .btn-toggle-img {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-toggle-img:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Resume Document Sheet */
+    .resume-sheet {
+      width: 100%;
+      max-width: 850px;
+      background: var(--bg-sheet);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      position: relative;
+    }
+
+    /* Left Column */
+    .left-col {
+      background: #ffffff;
+      border-right: 2px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .left-col-header {
+      position: relative;
+      background: #ffffff;
+      padding: 40px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .header-geo-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: #1e3a5f;
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
+      z-index: 1;
+    }
+
+    .profile-photo-container {
+      position: relative;
+      z-index: 2;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      border: 4px solid #ffffff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+      background: #2563eb;
+      margin-top: 10px;
+    }
+
+    .profile-photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .candidate-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-top: 18px;
+      letter-spacing: -0.3px;
+    }
+
+    .left-section-block {
+      padding: 16px 28px 20px;
+    }
+
+    .section-title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #2b5c8f;
+      margin-bottom: 14px;
+    }
+
+    .section-title-badge svg {
+      color: #2b5c8f;
+    }
+
+    /* About Me List */
+    .about-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.84rem;
+      color: #334155;
+    }
+
+    .about-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.4;
+    }
+
+    .about-icon {
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      width: 18px;
+      text-align: center;
+    }
+
+    .about-item a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .about-item a:hover {
+      color: #2563eb;
+    }
+
+    /* Skills List */
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.86rem;
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    .skill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .skill-name-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .skill-bullet {
+      font-size: 1.2rem;
+      line-height: 0;
+      color: #334155;
+    }
+
+    .skill-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .skill-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #cbd5e1;
+    }
+
+    .skill-dot.active {
+      background: #3d7ea6;
+    }
+
+    .skill-dot.dark {
+      background: #0f172a;
+    }
+
+    /* Language List */
+    .language-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: #334155;
+      font-weight: 500;
+      padding-left: 8px;
+    }
+
+    .language-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Right Column (Timeline) */
+    .right-col {
+      padding: 44px 36px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .timeline-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #2b5c8f;
+      margin-bottom: 20px;
+    }
+
+    .timeline-section-title svg {
+      color: #2b5c8f;
+    }
+
+    .timeline-track {
+      position: relative;
+      padding-left: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 7px;
+      width: 2px;
+      background: #3d7ea6;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-bullet {
+      position: absolute;
+      left: -28px;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #3d7ea6;
+      border: 3px solid #ffffff;
+      box-shadow: 0 0 0 1.5px #3d7ea6;
+    }
+
+    .timeline-dates {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+
+    .timeline-org {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      line-height: 1.3;
+    }
+
+    .timeline-subtext {
+      font-size: 0.82rem;
+      color: #475569;
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    .timeline-bullet-list {
+      margin-top: 6px;
+      padding-left: 18px;
+      font-size: 0.82rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .timeline-bullet-list li {
+      margin-bottom: 3px;
+    }
+
+    /* Modal / Image View */
+    .image-modal-view {
+      display: none;
+      width: 100%;
+      max-width: 850px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      margin-top: 10px;
+    }
+
+    .image-modal-view img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      body {
+        background: transparent !important;
+        padding: 0 !important;
+      }
+      .top-action-bar {
+        display: none !important;
+      }
+      .resume-sheet {
+        box-shadow: none !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .resume-sheet {
+        grid-template-columns: 1fr;
+      }
+      .left-col {
+        border-right: none;
+        border-bottom: 2px solid #e2e8f0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Bar -->
+  <nav class="top-action-bar">
+    <a href="index.html" class="back-btn">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span>Back to Portfolio</span>
+    </a>
+    <div class="action-group">
+      <button class="action-btn btn-toggle-img" id="toggleImgBtn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span>View Original Scan</span>
+      </button>
+      <button class="action-btn btn-print" onclick="window.print()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"/>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+          <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+        <span>Print / Save PDF</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HTML Document View -->
+  <main class="resume-sheet" id="resumeDoc">
+    <!-- LEFT COLUMN -->
+    <aside class="left-col">
+      <div class="left-col-header">
+        <div class="header-geo-bg"></div>
+        <div class="profile-photo-container">
+          <img src="resume-photo.jpg" alt="James Andrew R. Yapit" />
+        </div>
+        <h1 class="candidate-name">James Andrew R. Yapit</h1>
+      </div>
+
+      <!-- About Me Section -->
+      <section class="left-section-block">
+        <div class="section-title-badge">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          <span>About Me</span>
+        </div>
+
+        <div class="about-list">
+          <div class="about-item">
+            <span class="about-icon">👤</span>
+            <span>20 years old</span>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">✉</span>
+            <a href="mailto:jamesandrewyapit@gmail.com">jamesandrewyapit@gmail.com</a>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">📞</span>
+            <span>09276427984 / 09153572037</span>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">🏠</span>
+            <span>Block1 Lot45 Eusebio Ave San Lorenzo Ruiz Homes Gawaran Molinovii Bacoor Cavite, 4102</span>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">📅</span>
+            <span>November 6, 2006</span>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">🚻</span>
+            <span>Male</span>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">🇵🇭</span>
+            <span>Filipino</span>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">💙</span>
+            <span>Single</span>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">⛪</span>
+            <span>Catholic</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section class="left-section-block">
+        <div class="section-title-badge">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span>Skills</span>
+        </div>
+
+        <div class="skills-list">
+          <div class="skill-row">
+            <div class="skill-name-wrap">
+              <span class="skill-bullet">•</span>
+              <span>HTML</span>
+            </div>
+            <div class="skill-dots">
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name-wrap">
+              <span class="skill-bullet">•</span>
+              <span>JavaScript</span>
+            </div>
+            <div class="skill-dots">
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name-wrap">
+              <span class="skill-bullet">•</span>
+              <span>CSS</span>
+            </div>
+            <div class="skill-dots">
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot dark"></span>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name-wrap">
+              <span class="skill-bullet">•</span>
+              <span>Responsive Web Design</span>
+            </div>
+            <div class="skill-dots">
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot dark"></span>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name-wrap">
+              <span class="skill-bullet">•</span>
+              <span>Frontend Development</span>
+            </div>
+            <div class="skill-dots">
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot dark"></span>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name-wrap">
+              <span class="skill-bullet">•</span>
+              <span>Problem Solving</span>
+            </div>
+            <div class="skill-dots">
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot active"></span>
+              <span class="skill-dot dark"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Language Section -->
+      <section class="left-section-block">
+        <div class="section-title-badge">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/>
+          </svg>
+          <span>Language</span>
+        </div>
+
+        <div class="language-list">
+          <div class="language-item">
+            <span>• English</span>
+          </div>
+          <div class="language-item">
+            <span>• Tagalog</span>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- RIGHT COLUMN (TIMELINE) -->
+    <section class="right-col">
+      <!-- Education Block -->
+      <div>
+        <div class="timeline-section-title">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+          </svg>
+          <span>Education</span>
+        </div>
+
+        <div class="timeline-track">
+          <!-- Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <p class="timeline-dates">(June 2012–April 2018)</p>
+            <h3 class="timeline-org">GAWARAN ELEMENTARY SCHOOL</h3>
+            <p class="timeline-subtext">Bacoor, Cavite</p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <p class="timeline-dates">(June 2018–May 2022)</p>
+            <h3 class="timeline-org">BACOOR NATIONAL HIGHSCHOOL GAWARAN- ANNEX</h3>
+            <p class="timeline-subtext">Bacoor Cavite</p>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <p class="timeline-dates">(June 2018–May 2022)</p>
+            <h3 class="timeline-org">SOUTHEAST ASIA INSTITUTE OF TRADE AND TECHNOLOGY</h3>
+            <p class="timeline-subtext">Science, Technology, Engineering And Mathematics</p>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <p class="timeline-dates">(2022 – Present)</p>
+            <h3 class="timeline-org">CAVITE STATE UNIVERSITY- BACOOR CAMPUS</h3>
+            <p class="timeline-subtext">Bachelor of Science in Computer Science<br/>3rd Year Student</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Block -->
+      <div>
+        <div class="timeline-section-title">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+          </svg>
+          <span>Experience</span>
+        </div>
+
+        <div class="timeline-track">
+          <!-- Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <p class="timeline-dates">(2024)</p>
+            <h3 class="timeline-org">ON JOB TRAINING / WORK IMMERSION</h3>
+            <p class="timeline-subtext"><strong>BACOOR NATIONAL HIGH SCHOOL- GAWARAN ANNEX</strong></p>
+            
+            <div style="margin-top: 10px;">
+              <p class="timeline-subtext" style="font-weight: 700; color: #1e293b;">Student Intern (Clinic)</p>
+              <ul class="timeline-bullet-list">
+                <li>Assist School Nurse to taking care those student who need medical attention.</li>
+              </ul>
+            </div>
+
+            <div style="margin-top: 10px;">
+              <p class="timeline-subtext" style="font-weight: 700; color: #1e293b;">Student Assistant</p>
+              <ul class="timeline-bullet-list">
+                <li>Assist Student in classroom during academic activities</li>
+                <li>Guide Student to understand their lesson.</li>
+                <li>Maintaining proper manner and discipline inside and outside the classroom</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Original High-Res Image View Container (Toggleable) -->
+  <div class="image-modal-view" id="imageScanView">
+    <img src="resume-image.jpg" alt="Official Resume - James Andrew R. Yapit" />
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleImgBtn');
+    const docView = document.getElementById('resumeDoc');
+    const scanView = document.getElementById('imageScanView');
+    let showingScan = false;
+
+    toggleBtn.addEventListener('click', () => {
+      showingScan = !showingScan;
+      if (showingScan) {
+        docView.style.display = 'none';
+        scanView.style.display = 'block';
+        toggleBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <span>View Interactive Layout</span>
+        `;
+      } else {
+        docView.style.display = 'grid';
+        scanView.style.display = 'none';
+        toggleBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <span>View Original Scan</span>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
+
